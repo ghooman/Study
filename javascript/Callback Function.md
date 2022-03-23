@@ -39,7 +39,7 @@ number.forEach(function(x) {
 __✔️ 함수의 이름(만) 넘기기__
 
 ```javascript
-function whatYourNumber(name, callback) {
+function whatYourName(name, callback) {
   console.log('name: ', name);
   callback();
 }
