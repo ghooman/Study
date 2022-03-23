@@ -40,7 +40,7 @@ __✔️ 함수의 이름(만) 넘기기__
 
 ```javascript
 function whatYourName(name, callback) {
-  console.log('name: ', name);
+  console.log('name:', name);
   callback();
 }
 
