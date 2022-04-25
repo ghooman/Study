@@ -2,12 +2,12 @@
 이게 거슬려서 없애는 방법을 찾아보았다.   
 ```html
 <head>
-<style type="text/css">
-body {
-    margin: 0;
-    padding: 0;
-}
-</style>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
 ```
 CSS를 사용해서 body에 있는 여백을 없애준다.   
