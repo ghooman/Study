@@ -141,7 +141,85 @@ npx sequelize-cli db:migrate
 ```
 이러면 완료이다.   
 
-user 테이블에 컬럼 하나를 더 추가를 하고 싶으면
+user 테이블에 컬럼 하나를 더 추가를 하고 싶으면 밑에 명령어를 실행하면 된다.
 ```
-npx sequelize migration:create --name addColumn //테이블이름
+npx sequelize migration:create --name addColumn //파일이름
+```
+
+**20220509182824-addColumn.js** 파일이 생겼다.   
+```javascript
+'use strict';
+
+module.exports = {
+  async up (queryInterface, Sequelize) {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+  },
+
+  async down (queryInterface, Sequelize) {
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+  }
+};
+```
+up객체에는 내가 필요로 하는 요구사항을 적으면 된다.   
+Users라는 테이블에 address라는 컬럼명을 추가를 해보겠다.
+```javascript
+  async up (queryInterface, Sequelize) {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+     return queryInterface.addColumn(
+      'users',
+      'address',
+      Sequelize.STRING
+    )
+  }
+```
+
+```
+npx sequelize-cli db:migrate
+```
+실행하면 된다.   
+mysql에서 컬럼이 추가된게 확인이 된다.   
+
+down 객체에 대해서 한번 알아보겠다.   
+rollback기능 이라고 생각하시면 된다.(이전 상태로 되돌리겠다.)   
+
+방금 추가를 했으니 이전 상태로 되돌릴려면 해당컬럼을 삭제하면 된다.
+```javascript
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+     return queryInterface.removeColumn('users', 'address')
+  }
+```
+```
+npx sequelize db:migrate:undo
+```
+이전 상태로 되돌아간다.   
+
+작성할 때는 up, down 객체를 한번에 작성해주면 된다.   
+업데이트할 때는
+```
+npx sequelize-cli db:migrate
+```
+되돌릴 때는
+```
+npx sequelize db:migrate:undo 
 ```
