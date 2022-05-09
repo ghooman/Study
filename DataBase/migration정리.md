@@ -37,7 +37,7 @@ npx sequelize init
   "development": {  //개발모드
     "username": "root", //DB와 연결할 유저 "이름"
     "password": null, //DB와 연결할 유저 "비밀번호"
-    "database": "database_development", //사용할 Database 이름
+    "database": "migration test", //사용할 Database 이름
     "host": "127.0.0.1", //DB 서버 호스트
     "dialect": "mysql" //DB 타입 설정 (mysql이 아니면 다른 DB 설정)
   },
@@ -59,7 +59,9 @@ npx sequelize init
 ```
 
 **models/index.js**   
-📌 데이터베이스에서 테이블이랑 sequelize에서 model이랑 같다고 생각하면 편하다.
+📌 데이터베이스에서 테이블이랑 sequelize에서 model이랑 같다고 생각하면 편하다.   
+models는 model(데이터베이스 테이블)들이 들어 있는 폴더이다.   
+(models 안에는 기본적으로 index.js 파일이 있다. 각 폴더에서 중요한 파일을 index.js 파일이라고 생각하면 된다.)
 ```javascript
 'use strict';
 
@@ -112,5 +114,9 @@ module.exports = db;
 
 ---
 ## ✔️ DB 생성
-sequelize에서 DB를 생성하는 방법은 터미널에 명령어를 통해 사용 가능하다.
-
+sequelize에서 DB를 생성하는 방법은 터미널에 명령어를 통해 사용 가능하다.   
+```
+npx sequelize db:create
+```
+위 명령어를 통해 config/config.json 파일을 읽은 후, develpment 모드에 작성되어 있는 migration test가 생성이 된다.   
+![스크린샷 2022-05-10 오전 2 59 19](https://user-images.githubusercontent.com/85857465/167469577-9a58ffbe-7fe9-4866-a5d8-c6cd58a982fe.png)   
