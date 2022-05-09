@@ -120,3 +120,28 @@ npx sequelize db:create
 ```
 위 명령어를 통해 config/config.json 파일을 읽은 후, develpment 모드에 작성되어 있는 migration test가 생성이 된다.   
 ![스크린샷 2022-05-10 오전 2 59 19](https://user-images.githubusercontent.com/85857465/167469577-9a58ffbe-7fe9-4866-a5d8-c6cd58a982fe.png)   
+
+MySQL 콘솔에서 DB 목록을 조회하면 해당 DB가 생성된 걸 확인할 수 있다.   
+
+---
+## ✔️ 테이블 생성
+공식문서에 있는 내용들을 가지고 test 해보겠다. 일단 Users라는 테이블을 하나 만들어 보겠다.   
+```
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+```
+
+- model:generate (테이블을 생성한다.)   
+- --name User(테이블 이름은 User라는걸로 실제 데이터베이스 테이블에는 복수형이 생깁니다. Users)   
+- -- attributes firstname: string (컬럼명은 firstname이고 데이터타입은 string을 받겠다.)   
+
+그러면 migration 폴더에 파일이 하나 생겼고, models 폴더에 user.js라는 파일이 생겼다.   
+아직 테이블이 생성된게 아니고 밑에 명령어를 입력하면 된다.
+```
+npx sequelize-cli db:migrate
+```
+이러면 완료이다.   
+
+user 테이블에 컬럼 하나를 더 추가를 하고 싶으면
+```
+npx sequelize migration:create --name addColumn //테이블이름
+```
