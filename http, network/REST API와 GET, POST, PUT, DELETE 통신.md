@@ -1,4 +1,4 @@
-## 📌 REST (Representational State Transfer)
+## 📌 REST(Representational State Transfer) API
 REST API는 웹에서 데이터를 전송 및 처리하는 방법을 정의한 인터페이스를 말한다.   
 모든 데이터 구조와 처리방식은 REST에서 URL을 통해 정의되며, 그래서 매우 직관적으로 이해할 수 있다.
 
