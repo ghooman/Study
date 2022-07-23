@@ -82,7 +82,7 @@ export default configureStore({
 { 작명 : createSlice만든거.reducer } 이러면 등록 끝이다.   
 여기 등록한 state는 모든 컴포넌트가 자유롭게 사용 가능하다.   
 
->Redux store에 있던 state 가져다쓰는 법
+>Redux store에 있던 state 가져다 쓰는 법
 ```javascript
 import { useSelector } from "react-redux"
 
