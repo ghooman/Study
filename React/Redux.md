@@ -23,7 +23,7 @@ npm install @reduxjs/toolkit react-redux
 
 이거 두개가 18.1.x 이상이면 사용 가능하다.
 ***
-**✔️ 셋팅**
+**✔️ 셋팅**   
 src폴더에 store.js파일(state들을 보관하는 파일이다.)을 만들어서 아래 코드를 복붙한다.
 ```javascript
 import { configureStore } from '@reduxjs/toolkit'
