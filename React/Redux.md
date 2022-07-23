@@ -24,4 +24,81 @@ npm install @reduxjs/toolkit react-redux
 이거 두개가 18.1.x 이상이면 사용 가능하다.
 ***
 **✔️ 셋팅**
-src폴더에 store.js파일을 만들어서 아래 코드를 복붙한다.
+src폴더에 store.js파일(state들을 보관하는 파일이다.)을 만들어서 아래 코드를 복붙한다.
+```javascript
+import { configureStore } from '@reduxjs/toolkit'
+
+export default configureStore({
+  reducer: { }
+}) 
+```
+
+`index.js` 파일을 밑에 처럼 작성해 준다.
+```javascript
+import { Provider } from "react-redux";
+import store from './store.js'
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>
+); 
+```
+Provider라는 컴포넌트와 store.js를 import해온다.   
+그리고 밑에 <Provider store={import해온거}> 이걸로 <App/> 을 감싸면 된다.   
+그럼 이제 <App>과 그 모든 자식컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다.
+***
+**✔️ 사용법**
+>Redux store에 state 보관하는 법 
+
+store.js 파일 열어서 이렇게 코드짜면 state 하나 만들 수 있다.   
+
+step 1. createSlice( ) 로 state 만들고   
+step 2. configureStore( ) 안에 등록하면 된다.
+```javascript
+import { configureStore, createSlice } from '@reduxjs/toolkit'
+
+let user = createSlice({
+  name : 'user',
+  initialState : 'kim'
+})
+
+export default configureStore({
+  reducer: {
+    user : user.reducer
+  }
+})
+```
+1. createSlice() 상단에서 import 해온 다음에   
+{ name : 'state이름', initialState : 'state값' } 넣으면 state 하나 생성 가능하다.     
+(createSlice()는 useState() 와 용도가 비슷하다고 보면 된다.)   
+
+2. state 등록은 configureStore() 안에 하면 된다.   
+{ 작명 : createSlice만든거.reducer } 이러면 등록 끝이다.   
+여기 등록한 state는 모든 컴포넌트가 자유롭게 사용 가능하다.   
+
+>Redux store에 있던 state 가져다쓰는 법
+```javascript
+import { useSelector } from "react-redux"
+
+function Cart(){
+  let a = useSelector((state) => { return state })
+  console.log(a)
+
+  return (생략)
+}
+```
+
+아무 컴포넌트에서 상단에 useSelctor를 import해오고   
+useSelector((state) => { return state } ) 쓰면 store에 있던 모든 state가 그 자리에 남는다.   
+출력해 보면 { user : 'kim' } 출력 된다.
+
+```javascript
+let a = useSelector((state) => state.user)
+```
+이런식으로 쓰면 kim이 출력 된다.
