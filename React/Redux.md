@@ -150,4 +150,4 @@ import { changeName } from "./../store.js"
 이렇게 코드짜면 된다.
 - store.js에서 원하는 state변경함수 가져오면 되고   
 - useDispatch 라는 것도 라이브러리에서 가져온다.   
-- 그리고 dispatch( state변경함수() ) 이렇게 감싸서 실행하면 state 진짜로 변경다. 
+- 그리고 dispatch( state변경함수() ) 이렇게 감싸서 실행하면 state 진짜로 변경된다. 
