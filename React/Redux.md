@@ -50,8 +50,8 @@ root.render(
 ); 
 ```
 Provider라는 컴포넌트와 store.js를 import해온다.   
-그리고 밑에 <Provider store={import해온거}> 이걸로 <App/> 을 감싸면 된다.   
-그럼 이제 <App>과 그 모든 자식컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다.
+그리고 밑에 <Provider store={import해온거}> 이걸로 App 컴포넌트를 감싸면 된다.   
+그럼 이제 App 컴포넌트와 그 모든 자식 컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다.
 ***
 **✔️ 사용법**
 >Redux store에 state 보관하는 법 
@@ -102,3 +102,17 @@ useSelector((state) => { return state } ) 쓰면 store에 있던 모든 state가
 let a = useSelector((state) => state.user)
 ```
 이런식으로 쓰면 kim이 출력 된다.
+***
+✔️ store의 state 변경하는 법   
+1. store.js 안에 state 수정해주는 함수부터 만든다.
+```javascript
+let user = createSlice({
+  name : 'user',
+  initialState : 'kim',
+  reducers : {
+    changeName(state){
+      return 'john ' + state
+    }
+  }
+}) 
+```
