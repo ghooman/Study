@@ -104,7 +104,7 @@ let a = useSelector((state) => state.user)
 이런식으로 쓰면 kim이 출력 된다.
 ***
 ✔️ store의 state 변경하는 법   
-1. store.js 안에 state 수정해주는 함수부터 만든다.
+>1. store.js 안에 state 수정해주는 함수부터 만든다.
 ```javascript
 let user = createSlice({
   name : 'user',
@@ -116,3 +116,38 @@ let user = createSlice({
   }
 }) 
 ```
+slice 안에 reducers: { } 열고 거기 안에 함수 만들면 된다.   
+- 함수 작명 마음대로 한다.   
+- 파라미터 하나 작명하면 그건 기존 state가 된다.   
+- return 우측에 새로운 state 입력하면 그걸로 기존 state를 갈아치워준다.   
+
+이제 changeName() 쓸 때 마다 'kim' -> 'john kim' 이렇게 변한다.   
+
+>2. 다른 곳에서 쓰기좋게 export 해둔다.
+```javascript
+export let { changeName } = user.actions
+```
+이런 코드를 store.js 밑에 추가하면 된다.   
+slice이름.actions 라고 적으면 state 변경함수가 전부 그 자리에 출력된다.   
+그걸 변수에 저장했다가 export 하라는 뜻이다.   
+
+>3. 원할 때 import 해서 사용한다. dispatch()로 감싸서 사용해야 된다.
+
+예를 들어서 Cart.js 에서 버튼같은거 하나 만들고
+그 버튼 누르면 state를 'kim' -> 'john kim' 이렇게 변경하고 싶으면
+```javascript
+(Cart.js)
+
+import { useDispatch, useSelector } from "react-redux"
+import { changeName } from "./../store.js"
+
+(생략) 
+
+<button onClick={()=>{
+  dispatch(changeName())
+}}>버튼임</button>
+```
+이렇게 코드짜면 된다.
+- store.js에서 원하는 state변경함수 가져오면 되고   
+- useDispatch 라는 것도 라이브러리에서 가져온다.   
+- 그리고 dispatch( state변경함수() ) 이렇게 감싸서 실행하면 state 진짜로 변경다. 
