@@ -8,6 +8,15 @@
 그래서 귀찮은 props 전송이 필요없어진다. (컴포넌트가 많아질 수록 좋겠다.)   
 그래서 사이트가 커지면 쓸 수 밖에 없어서 개발자 구인시에도 redux같은 라이브러리 숙련도를 대부분 요구한다고 한다.
 ***
+## 📌 Redux Toolkit
+Redux Toolkit은 Redux를 더 사용하기 쉽게 만들기 위해 Redux에서 공식 제공하는 개발도구이다.    
+Redux Toolkit은 아래와 같은 Redux의 단점을 보완하고자 만들어졌다.
+- 리덕스의 복잡한 스토어 설정
+- 리덕스를 유용하게 사용하기 위해서 추가되어야 하는 많은 패키지들
+- 리덕스 사용을 위해 요구되는 다량의 상용구(boilerplate) 코드들
+
+이러한 Redux의 한계를 깨닫고 "효율적인 Redux 개발을 위한 공식적이고 독단적인 배터리 포함 도구 세트" Redux Toolkit (RTK)가 개발되었다.
+***
 ### ✔️ 설치
 ```
 npm install @reduxjs/toolkit react-redux
@@ -167,4 +176,22 @@ let user = createSlice({
 }) 
 ```
 이렇게 쓰면 changeName() 사용시 변경된다.   
-return 오른쪽에 적은걸로 기존 state를 바꿔주기 때문이다.
+return 오른쪽에 적은걸로 기존 state를 바꿔주기 때문이다.   
+  
+```javascript
+let user = createSlice({
+  name : 'user',
+  initialState : {name : 'kim', age : 20},
+  reducers : {
+    changeName(state){
+      state.name = 'park'
+    }
+  }
+}) 
+```
+근데 state를 직접 수정해도 변경이 잘 된다.   
+state를 직접 수정하는 문법을 사용해도 잘 변경되는 이유는   
+Immer.js라는 라이브러리가 state 사본을 하나 더 생성해준 덕분인데 Redux 설치하면 딸려와서 그렇다고 한다.   
+
+그래서 결론은 array/object 자료의 경우 state변경은   
+state를 직접 수정해도 잘 되니까 직접 수정하면 된다.
