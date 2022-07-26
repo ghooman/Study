@@ -8,7 +8,7 @@
 그래서 귀찮은 props 전송이 필요없어진다. (컴포넌트가 많아질 수록 좋겠다.)   
 그래서 사이트가 커지면 쓸 수 밖에 없어서 개발자 구인시에도 redux같은 라이브러리 숙련도를 대부분 요구한다고 한다.
 ***
-**✔️ 설치**
+### ✔️ 설치
 ```
 npm install @reduxjs/toolkit react-redux
 ```
@@ -23,7 +23,7 @@ npm install @reduxjs/toolkit react-redux
 
 이거 두개가 18.1.x 이상이면 사용 가능하다.
 ***
-**✔️ 셋팅**   
+### ✔️ 셋팅
 src폴더에 store.js파일(state들을 보관하는 파일이다.)을 만들어서 아래 코드를 복붙한다.
 ```javascript
 import { configureStore } from '@reduxjs/toolkit'
@@ -53,7 +53,7 @@ Provider라는 컴포넌트와 store.js를 import해온다.
 그리고 밑에 <Provider store={import해온거}> 이걸로 App 컴포넌트를 감싸면 된다.   
 그럼 이제 App 컴포넌트와 그 모든 자식 컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다.
 ***
-**✔️ 사용법**
+### ✔️ 사용법
 >Redux store에 state 보관하는 법 
 
 store.js 파일 열어서 이렇게 코드짜면 state 하나 만들 수 있다.   
@@ -103,7 +103,7 @@ let a = useSelector((state) => state.user)
 ```
 이런식으로 쓰면 kim이 출력 된다.
 ***
-✔️ store의 state 변경하는 법   
+### ✔️ store의 state 변경하는 법   
 >1. store.js 안에 state 수정해주는 함수부터 만든다.
 ```javascript
 let user = createSlice({
@@ -151,3 +151,20 @@ import { changeName } from "./../store.js"
 - store.js에서 원하는 state변경함수 가져오면 되고   
 - useDispatch 라는 것도 라이브러리에서 가져온다.   
 - 그리고 dispatch( state변경함수() ) 이렇게 감싸서 실행하면 state 진짜로 변경된다. 
+***
+### ✔️ redux state가 array/object인 경우 변경하는 법
+{name : 'kim', age : 20} 이렇게 생긴 자료를 state로 만들어본다.   
+'kim' -> 'park' 이렇게 변경하고 싶으면
+```javascript
+let user = createSlice({
+  name : 'user',
+  initialState : {name : 'kim', age : 20},
+  reducers : {
+    changeName(state){
+      return {name : 'park', age : 20}
+    }
+  }
+}) 
+```
+이렇게 쓰면 changeName() 사용시 변경된다.   
+return 오른쪽에 적은걸로 기존 state를 바꿔주기 때문이다.
