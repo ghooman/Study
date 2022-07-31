@@ -195,3 +195,30 @@ Immer.js라는 라이브러리가 state 사본을 하나 더 생성해준 덕분
 
 그래서 결론은 array/object 자료의 경우 state변경은   
 state를 직접 수정해도 잘 되니까 직접 수정하면 된다.
+***
+### ✔️ state 변경함수가 여러개 필요한 경우
+예를 들어서 +1 하는 기능 또는 +10, +100을 하는 기능을 만들고 싶으면   
+여러개의 함수를 만들지 않고 파라미터문법 이용하면 비슷한 함수 여러개 만들 필요가 없다고 한다.   
+
+state변경함수에도 파라미터문법 사용가능함.
+```javascript
+let user = createSlice({
+  name : 'user',
+  initialState : {name : 'kim', age : 20},
+  reducers : {
+    increase(state, a){
+      state.age += a.payload
+    }
+  }
+}) 
+```
+state변경함수의 둘째 파라미터를 작명하면 이제   
+increase(10)   
+increase(100)   
+이런 식으로 파라미터입력을 해서 함수사용이 가능하다.   
+파라미터자리에 넣은 자료들은 a.payload 하면 나온다.   
+
+(참고)   
+- a 말고 action 이런 식으로 작명 많이 한다고 한다. 
+- action.type 하면 state변경함수 이름이 나오고
+- action.payload 하면 파라미터가 나온다.
