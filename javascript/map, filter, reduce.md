@@ -60,7 +60,7 @@ array = reduce를 호출한 배열
 ```javascript
 const arr = [1,2,3,4,5];
 
-const sum = arr.reduce((acc, val) => acc + val);
+const sum = arr.reduce((acc, cur) => acc + cur);
 
 console.log(sum);
 ```
@@ -71,7 +71,7 @@ arr의 모든 요소의 합을 구하는 코드
 ```javacsript
 const arr = [1,2,3,4,5];
 
-const sum = arr.reduce((acc, val) => acc + val, 10);
+const sum = arr.reduce((acc, cur) => acc + cur, 10);
 
 console.log(sum);
 ```
