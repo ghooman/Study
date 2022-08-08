@@ -18,6 +18,15 @@ drop databse 데이타베이스명;
 **💡DB 생성하기**   
 CREATE DATABASE 데이터베이스_이름;
 
+**💡테이블 생성하기**
+```
+CREATE TABLE user (   
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(255),
+  email varchar(255)
+);
+```
+
 **💡테이블 보기**   
 show tables;
 
