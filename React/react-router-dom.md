@@ -56,7 +56,7 @@ export default About;
 ***
 ### App.js
 ```javascript
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import About from "./route/About";
 import Home from "./route/Home";
 
@@ -76,8 +76,3 @@ export default App;
 1. 우선 상단에서 여러가지 컴포넌트를 import 해오고
 2. <Routes> 만들고 그 안에 <Route>를 작성한다.
 3. <Route path="/url경로" element={ <보여줄html> } /> 이렇게 작성하면 된다.
-***
-### 페이지 이동 버튼
-유저들은 주소창에 url 입력해서 들어가지 않고 링크타고 들어간다.   
-링크를 만들고 싶으면 react-router-dom에서 Link 컴포넌트 import 해오고   
-원하는 곳에서 <Link> 쓰면 된다.   
