@@ -56,7 +56,7 @@ export default About;
 ***
 ### App.js
 ```javascript
-import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import About from "./route/About";
 import Home from "./route/Home";
 
