@@ -59,7 +59,7 @@ root.render(
 ); 
 ```
 Provider라는 컴포넌트와 store.js를 import해온다.   
-그리고 밑에 <Provider store={import해온거}> 이걸로 App 컴포넌트를 감싸면 된다.   
+그리고 밑에 `<Provider store={import해온거}>` 이걸로 App 컴포넌트를 감싸면 된다.   
 그럼 이제 App 컴포넌트와 그 모든 자식 컴포넌트들은 store.js에 있던 state를 맘대로 꺼내쓸 수 있다.
 ***
 ### ✔️ 사용법
@@ -150,6 +150,7 @@ slice이름.actions 라고 적으면 state 변경함수가 전부 그 자리에 
 import { useDispatch, useSelector } from "react-redux"
 import { changeName } from "./../store.js"
 
+let dispatch = useDispatch();
 (생략) 
 
 <button onClick={()=>{
@@ -158,7 +159,8 @@ import { changeName } from "./../store.js"
 ```
 이렇게 코드짜면 된다.
 - store.js에서 원하는 state변경함수 가져오면 되고   
-- useDispatch 라는 것도 라이브러리에서 가져온다.   
+- useDispatch 라는 것도 라이브러리에서 가져온다.
+- dispatch라는 변수를 만들어서 그안에 useDispatch()를 할당해준다.   
 - 그리고 dispatch( state변경함수() ) 이렇게 감싸서 실행하면 state 진짜로 변경된다. 
 ***
 ### ✔️ redux state가 array/object인 경우 변경하는 법
