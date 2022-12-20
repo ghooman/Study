@@ -4,7 +4,7 @@ reduce()는 배열 각 요소에 대하여 reducer 함수를 실행하고, map�
 ---
 __문법)__
 >
-```javascripta
+```javascript
 const numbers = [1, 2, 3, 4];
 const numbersSum = numbers.reduce((acc, cur) => {
   console.log(acc, cur); ///acc = accumulator, cur = currentValue
